@@ -59,97 +59,100 @@ export default function BMICalculator() {
   const bmiPercent = result ? Math.min(((result.bmi - 10) / 30) * 100, 100) : 0;
 
   return (
-    <section id="bmi" className="py-24 lg:py-32 bg-brand-black relative overflow-hidden">
+    <section id="bmi" className="py-16 sm:py-24 lg:py-32 bg-brand-black relative overflow-hidden">
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-brand-lime/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           {/* Left – Info */}
           <div>
             <div className={`flex items-center gap-3 mb-4 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}>
               <div className="w-8 h-0.5 bg-brand-lime" />
-              <span className="text-brand-lime text-sm font-semibold uppercase tracking-widest">Know Your Numbers</span>
+              <span className="text-brand-lime text-xs sm:text-sm font-semibold uppercase tracking-widest">Know Your Numbers</span>
             </div>
-            <h2 className={`font-display font-black text-5xl sm:text-6xl text-white leading-none mb-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
+            <h2 className={`font-display font-black text-4xl sm:text-6xl text-white leading-none mb-4 sm:mb-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
               BMI<br /><span className="text-brand-lime">CALCULATOR</span>
             </h2>
-            <p className={`text-white/50 text-lg leading-relaxed mb-8 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.2s' }}>
+            <p className={`text-white/50 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.2s' }}>
               Understanding your Body Mass Index is the first step to setting realistic goals. Use our calculator to get your score and receive personalized fitness recommendations.
             </p>
 
             {/* Ranges reference */}
-            <div className={`space-y-2 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.3s' }}>
+            <div className={`space-y-2.5 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.3s' }}>
               {[
                 { label: 'Underweight', range: '< 18.5', color: '#3B82F6' },
                 { label: 'Healthy Weight', range: '18.5 – 24.9', color: '#22C55E' },
                 { label: 'Overweight', range: '25 – 29.9', color: '#F59E0B' },
                 { label: 'Obese', range: '≥ 30', color: '#ccdc32' },
               ].map((item) => (
-                <div key={item.label} className="flex items-center gap-3 text-sm">
-                  <div className="w-3 h-3 rounded-full" style={{ background: item.color }} />
-                  <span className="text-white/60">{item.label}</span>
-                  <span className="text-white/30 ml-auto font-mono text-xs">{item.range}</span>
+                <div key={item.label} className="flex items-center gap-3 text-xs sm:text-sm">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full shrink-0" style={{ background: item.color }} />
+                  <span className="text-white/70">{item.label}</span>
+                  <span className="text-white/40 ml-auto font-mono text-xs">{item.range}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Right – Calculator */}
-          <div className={`glass rounded-2xl p-7 border border-white/8 transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`} style={{ transitionDelay: '0.2s' }}>
+          <div className={`glass rounded-2xl p-5 sm:p-7 border border-white/8 transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`} style={{ transitionDelay: '0.2s' }}>
             {/* Unit Toggle */}
-            <div className="flex gap-1 glass rounded-full p-1 mb-6 w-fit border border-white/10">
+            <div className="flex gap-1 glass rounded-full p-1 mb-5 sm:mb-6 w-fit border border-white/10">
               {(['metric', 'imperial'] as Unit[]).map((u) => (
                 <button
                   key={u}
                   onClick={() => { setUnit(u); setResult(null); setHeight(''); setWeight(''); }}
-                  className={cn('px-4 py-1.5 rounded-full text-sm font-semibold capitalize transition-all', unit === u ? 'bg-brand-lime text-white' : 'text-white/50 hover:text-white')}
+                  className={cn('px-3.5 py-1.5 sm:px-4 rounded-full text-xs sm:text-sm font-semibold capitalize transition-all active:scale-95', unit === u ? 'bg-brand-lime text-white' : 'text-white/50 hover:text-white')}
                 >
                   {u}
                 </button>
               ))}
             </div>
 
-            {/* Inputs */}
-            <div className="space-y-4 mb-6">
+            {/* Inputs - text-base prevents iOS Safari zoom on focus */}
+            <div className="space-y-3.5 sm:space-y-4 mb-5 sm:mb-6">
               <div>
-                <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">
+                <label className="block text-white/50 text-[11px] sm:text-xs uppercase tracking-wider mb-1.5 sm:mb-2">
                   Height ({unit === 'metric' ? 'cm' : 'inches'})
                 </label>
                 <input
                   type="number"
+                  inputMode="decimal"
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
                   placeholder={unit === 'metric' ? 'e.g. 175' : 'e.g. 69'}
-                  className="w-full bg-brand-black/60 border border-white/10 text-white placeholder-white/20 rounded-xl px-4 py-3 text-sm focus:border-brand-lime/60 focus:outline-none transition-colors"
+                  className="w-full bg-brand-black/60 border border-white/10 text-white placeholder-white/20 rounded-xl px-4 py-3 text-base sm:text-sm focus:border-brand-lime/60 focus:outline-none transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">
+                <label className="block text-white/50 text-[11px] sm:text-xs uppercase tracking-wider mb-1.5 sm:mb-2">
                   Weight ({unit === 'metric' ? 'kg' : 'lbs'})
                 </label>
                 <input
                   type="number"
+                  inputMode="decimal"
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
                   placeholder={unit === 'metric' ? 'e.g. 75' : 'e.g. 165'}
-                  className="w-full bg-brand-black/60 border border-white/10 text-white placeholder-white/20 rounded-xl px-4 py-3 text-sm focus:border-brand-lime/60 focus:outline-none transition-colors"
+                  className="w-full bg-brand-black/60 border border-white/10 text-white placeholder-white/20 rounded-xl px-4 py-3 text-base sm:text-sm focus:border-brand-lime/60 focus:outline-none transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">Age (optional)</label>
+                <label className="block text-white/50 text-[11px] sm:text-xs uppercase tracking-wider mb-1.5 sm:mb-2">Age (optional)</label>
                 <input
                   type="number"
+                  inputMode="numeric"
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
                   placeholder="e.g. 28"
-                  className="w-full bg-brand-black/60 border border-white/10 text-white placeholder-white/20 rounded-xl px-4 py-3 text-sm focus:border-brand-lime/60 focus:outline-none transition-colors"
+                  className="w-full bg-brand-black/60 border border-white/10 text-white placeholder-white/20 rounded-xl px-4 py-3 text-base sm:text-sm focus:border-brand-lime/60 focus:outline-none transition-colors"
                 />
               </div>
             </div>
 
             <button
               onClick={handleCalc}
-              className="w-full flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-white font-semibold py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-brand-lime/25 mb-6"
+              className="w-full flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-white font-semibold py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-brand-lime/25 active:scale-95 text-base mb-5 sm:mb-6"
             >
               <Calculator size={18} />
               Calculate My BMI
@@ -157,33 +160,34 @@ export default function BMICalculator() {
 
             {/* Result */}
             {result && (
-              <div className="rounded-xl border border-white/8 p-5 bg-brand-black/40 animate-fade-up">
+              <div className="rounded-xl border border-white/8 p-4 sm:p-5 bg-brand-black/40 animate-fade-up">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-white/50 text-sm">Your BMI</span>
-                  <span className="font-display text-3xl font-black" style={{ color: result.color }}>
+                  <span className="text-white/50 text-xs sm:text-sm">Your BMI</span>
+                  <span className="font-display text-2xl sm:text-3xl font-black" style={{ color: result.color }}>
                     {result.bmi}
                   </span>
                 </div>
 
-                {/* BMI Gauge */}
-                <div className="relative h-3 bg-gradient-to-r from-blue-500 via-green-500 via-yellow-500 to-brand-lime rounded-full mb-2 overflow-hidden">
+                {/* BMI Gauge - No overflow clipping for the marker */}
+                <div className="relative my-3 pt-1">
+                  <div className="h-2.5 bg-gradient-to-r from-blue-500 via-green-500 via-yellow-500 to-brand-lime rounded-full" />
                   <div
                     className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-lg transition-all duration-500"
                     style={{ left: `calc(${bmiPercent}% - 8px)`, backgroundColor: result.color }}
                   />
                 </div>
-                <div className="flex justify-between text-xs text-white/30 mb-4">
+                <div className="flex justify-between text-[11px] text-white/30 mb-3 px-0.5">
                   <span>10</span><span>18.5</span><span>25</span><span>30</span><span>40</span>
                 </div>
 
-                <div className="font-semibold text-white mb-1" style={{ color: result.color }}>
+                <div className="font-semibold text-sm sm:text-base mb-1" style={{ color: result.color }}>
                   {result.category}
                 </div>
-                <p className="text-white/50 text-sm leading-relaxed mb-4">{result.recommendation}</p>
+                <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">{result.recommendation}</p>
 
                 <button
                   onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="flex items-center gap-1 text-brand-lime text-sm font-semibold hover:gap-2 transition-all"
+                  className="flex items-center gap-1 text-brand-lime text-xs sm:text-sm font-semibold hover:gap-2 transition-all"
                 >
                   Get a free consultation <ChevronRight size={14} />
                 </button>

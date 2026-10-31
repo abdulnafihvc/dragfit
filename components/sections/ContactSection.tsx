@@ -55,44 +55,44 @@ export default function ContactSection() {
   };
 
   const inputClass = (hasError?: string) =>
-    `w-full bg-brand-black/60 border ${hasError ? 'border-brand-lime/60' : 'border-white/10'} text-white placeholder-white/20 rounded-xl px-4 py-3 text-sm focus:border-brand-lime/60 focus:outline-none transition-colors`;
+    `w-full bg-brand-black/60 border ${hasError ? 'border-brand-lime/60' : 'border-white/10'} text-white placeholder-white/20 rounded-xl px-4 py-3 text-base sm:text-sm focus:border-brand-lime/60 focus:outline-none transition-colors`;
 
   return (
-    <section id="contact" className="py-24 lg:py-32 bg-brand-charcoal relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-24 lg:py-32 bg-brand-charcoal relative overflow-hidden">
       <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-brand-lime/5 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <div className={`flex items-center justify-center gap-3 mb-4 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}>
             <div className="w-8 h-0.5 bg-brand-lime" />
-            <span className="text-brand-lime text-sm font-semibold uppercase tracking-widest">Get In Touch</span>
+            <span className="text-brand-lime text-xs sm:text-sm font-semibold uppercase tracking-widest">Get In Touch</span>
             <div className="w-8 h-0.5 bg-brand-lime" />
           </div>
-          <h2 className={`font-display font-black text-5xl sm:text-6xl text-white leading-none transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
+          <h2 className={`font-display font-black text-4xl sm:text-6xl text-white leading-none transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
             START YOUR<br /><span className="text-brand-lime">JOURNEY TODAY</span>
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-16">
           {/* Left – Info */}
-          <div className={`lg:col-span-2 space-y-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.2s' }}>
+          <div className={`lg:col-span-2 space-y-4 sm:space-y-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.2s' }}>
             {[
               { icon: MapPin, label: 'Location', value: '123 Fitness Boulevard\nLos Angeles, CA 90001', link: null },
               { icon: Phone, label: 'Phone', value: '+1 (800) DRAG-FIT', link: 'tel:+18003724348' },
               { icon: Mail, label: 'Email', value: 'hello@dragfit.com', link: 'mailto:hello@dragfit.com' },
               { icon: Clock, label: 'Hours', value: 'Mon–Fri: 5am–11pm\nSat–Sun: 6am–10pm\nPremium: 24/7', link: null },
             ].map(({ icon: Icon, label, value, link }) => (
-              <div key={label} className="flex gap-4 p-5 rounded-xl bg-brand-black/40 border border-white/5 hover:border-brand-lime/20 transition-all group">
-                <div className="w-10 h-10 rounded-lg bg-brand-lime/10 group-hover:bg-brand-lime/20 flex items-center justify-center shrink-0 transition-colors">
+              <div key={label} className="flex gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl bg-brand-black/40 border border-white/5 hover:border-brand-lime/20 transition-all group">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-brand-lime/10 group-hover:bg-brand-lime/20 flex items-center justify-center shrink-0 transition-colors">
                   <Icon size={18} className="text-brand-lime" />
                 </div>
                 <div>
-                  <div className="text-white/40 text-xs uppercase tracking-wider mb-1">{label}</div>
+                  <div className="text-white/40 text-[11px] sm:text-xs uppercase tracking-wider mb-0.5 sm:mb-1">{label}</div>
                   {link ? (
-                    <a href={link} className="text-white font-medium hover:text-brand-lime transition-colors text-sm whitespace-pre-line">{value}</a>
+                    <a href={link} className="text-white font-medium hover:text-brand-lime transition-colors text-xs sm:text-sm whitespace-pre-line">{value}</a>
                   ) : (
-                    <div className="text-white font-medium text-sm whitespace-pre-line">{value}</div>
+                    <div className="text-white font-medium text-xs sm:text-sm whitespace-pre-line">{value}</div>
                   )}
                 </div>
               </div>
@@ -103,14 +103,14 @@ export default function ContactSection() {
               href="https://wa.me/18003724348?text=Hi! I'd like to learn more about DragFit membership."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 p-5 rounded-xl bg-green-500/10 border border-green-500/20 hover:bg-green-500/20 transition-all group"
+              className="flex items-center gap-3 p-4 sm:p-5 rounded-xl bg-green-500/10 border border-green-500/20 hover:bg-green-500/20 transition-all group active:scale-95"
             >
-              <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-green-500/20 flex items-center justify-center shrink-0">
                 <MessageCircle size={18} className="text-green-400" />
               </div>
               <div>
-                <div className="text-white font-semibold text-sm">Chat on WhatsApp</div>
-                <div className="text-white/40 text-xs">Typically replies within minutes</div>
+                <div className="text-white font-semibold text-xs sm:text-sm">Chat on WhatsApp</div>
+                <div className="text-white/40 text-[11px] sm:text-xs">Typically replies within minutes</div>
               </div>
               <div className="ml-auto w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             </a>
@@ -132,14 +132,14 @@ export default function ContactSection() {
           </div>
 
           {/* Right – Contact Form */}
-          <div className={`lg:col-span-3 glass rounded-2xl p-7 border border-white/8 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.35s' }}>
+          <div className={`lg:col-span-3 glass rounded-2xl p-5 sm:p-7 border border-white/8 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.35s' }}>
             {submitted ? (
-              <div className="flex flex-col items-center justify-center h-full py-16 text-center">
-                <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-                  <CheckCircle size={32} className="text-green-400" />
+              <div className="flex flex-col items-center justify-center h-full py-12 sm:py-16 text-center">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
+                  <CheckCircle size={30} className="text-green-400" />
                 </div>
-                <h3 className="font-display text-2xl font-black text-white uppercase mb-2">Message Sent!</h3>
-                <p className="text-white/50 max-w-xs">We&apos;ll get back to you within 2 hours. Check your inbox for a confirmation.</p>
+                <h3 className="font-display text-xl sm:text-2xl font-black text-white uppercase mb-2">Message Sent!</h3>
+                <p className="text-white/50 text-sm max-w-xs">We&apos;ll get back to you within 2 hours. Check your inbox for a confirmation.</p>
                 <button
                   onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', interest: '', message: '' }); }}
                   className="mt-6 text-brand-lime text-sm font-semibold hover:text-brand-lime-light transition-colors"
@@ -149,28 +149,28 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
-                <h3 className="font-display font-black text-2xl text-white uppercase mb-6">Book a Free Consultation</h3>
+                <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase mb-5 sm:mb-6">Book a Free Consultation</h3>
 
-                <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                <div className="grid sm:grid-cols-2 gap-3.5 sm:gap-4 mb-3.5 sm:mb-4">
                   <div>
-                    <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">Full Name *</label>
+                    <label className="block text-white/50 text-[11px] sm:text-xs uppercase tracking-wider mb-1.5 sm:mb-2">Full Name *</label>
                     <input type="text" value={form.name} onChange={updateField('name')} placeholder="John Doe" className={inputClass(errors.name)} />
                     {errors.name && <p className="text-brand-lime text-xs mt-1">{errors.name}</p>}
                   </div>
                   <div>
-                    <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">Email Address *</label>
+                    <label className="block text-white/50 text-[11px] sm:text-xs uppercase tracking-wider mb-1.5 sm:mb-2">Email Address *</label>
                     <input type="email" value={form.email} onChange={updateField('email')} placeholder="john@example.com" className={inputClass(errors.email)} />
                     {errors.email && <p className="text-brand-lime text-xs mt-1">{errors.email}</p>}
                   </div>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                <div className="grid sm:grid-cols-2 gap-3.5 sm:gap-4 mb-3.5 sm:mb-4">
                   <div>
-                    <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">Phone Number</label>
+                    <label className="block text-white/50 text-[11px] sm:text-xs uppercase tracking-wider mb-1.5 sm:mb-2">Phone Number</label>
                     <input type="tel" value={form.phone} onChange={updateField('phone')} placeholder="+1 (555) 000-0000" className={inputClass()} />
                   </div>
                   <div>
-                    <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">I&apos;m Interested In</label>
+                    <label className="block text-white/50 text-[11px] sm:text-xs uppercase tracking-wider mb-1.5 sm:mb-2">I&apos;m Interested In</label>
                     <select value={form.interest} onChange={updateField('interest')} className={inputClass()}>
                       <option value="">Select an option</option>
                       <option value="membership">Gym Membership</option>
@@ -182,8 +182,8 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">Message *</label>
+                <div className="mb-5 sm:mb-6">
+                  <label className="block text-white/50 text-[11px] sm:text-xs uppercase tracking-wider mb-1.5 sm:mb-2">Message *</label>
                   <textarea
                     value={form.message}
                     onChange={updateField('message')}
@@ -197,7 +197,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-4 rounded-xl transition-all hover:shadow-lg hover:shadow-brand-lime/25"
+                  className="w-full flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3.5 sm:py-4 rounded-xl transition-all hover:shadow-lg hover:shadow-brand-lime/25 active:scale-95 text-base"
                 >
                   {loading ? (
                     <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Sending...</>
@@ -206,7 +206,7 @@ export default function ContactSection() {
                   )}
                 </button>
 
-                <p className="text-white/20 text-xs text-center mt-4">
+                <p className="text-white/30 text-[11px] sm:text-xs text-center mt-3 sm:mt-4">
                   By submitting, you agree to our Privacy Policy. We never spam.
                 </p>
               </form>

@@ -28,41 +28,41 @@ export default function FacilitiesSection() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="facilities" className="py-24 lg:py-32 bg-brand-charcoal relative overflow-hidden">
+    <section id="facilities" className="py-16 sm:py-24 lg:py-32 bg-brand-charcoal relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <div className={`flex items-center justify-center gap-3 mb-4 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}>
             <div className="w-8 h-0.5 bg-brand-lime" />
-            <span className="text-brand-lime text-sm font-semibold uppercase tracking-widest">World-Class Facilities</span>
+            <span className="text-brand-lime text-xs sm:text-sm font-semibold uppercase tracking-widest">World-Class Facilities</span>
             <div className="w-8 h-0.5 bg-brand-lime" />
           </div>
-          <h2 className={`font-display font-black text-5xl sm:text-6xl text-white leading-none transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
+          <h2 className={`font-display font-black text-4xl sm:text-6xl text-white leading-none transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
             BUILT FOR<br /><span className="text-brand-lime">CHAMPIONS</span>
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Image Gallery */}
           <div className={`transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{ transitionDelay: '0.2s' }}>
-            <div className="relative rounded-2xl overflow-hidden aspect-video mb-3">
+            <div className="relative rounded-2xl overflow-hidden aspect-video mb-2.5 sm:mb-3 shadow-xl">
               <img
                 src={FACILITY_IMAGES[active].src}
                 alt={FACILITY_IMAGES[active].label}
                 className="w-full h-full object-cover transition-all duration-500"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <div className="absolute bottom-4 left-4 glass px-3 py-1.5 rounded-full text-white text-sm font-medium border border-white/10">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 glass px-3 py-1 sm:py-1.5 rounded-full text-white text-xs sm:text-sm font-medium border border-white/10">
                 {FACILITY_IMAGES[active].label}
               </div>
             </div>
-            <div className="grid grid-cols-6 gap-2">
+            <div className="grid grid-cols-6 gap-1.5 sm:gap-2">
               {FACILITY_IMAGES.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  className={`rounded-lg overflow-hidden aspect-square border-2 transition-all ${active === i ? 'border-brand-lime scale-105' : 'border-transparent opacity-50 hover:opacity-80'}`}
+                  className={`rounded-lg overflow-hidden aspect-square border-2 transition-all active:scale-90 ${active === i ? 'border-brand-lime scale-105' : 'border-transparent opacity-50 hover:opacity-80'}`}
                 >
                   <img src={img.src} alt={img.label} className="w-full h-full object-cover" loading="lazy" />
                 </button>
@@ -72,34 +72,34 @@ export default function FacilitiesSection() {
 
           {/* Equipment List */}
           <div className={`transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`} style={{ transitionDelay: '0.3s' }}>
-            <p className="text-white/60 text-lg leading-relaxed mb-8">
+            <p className="text-white/60 text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
               Our 25,000 sq ft facility is stocked with the finest commercial-grade equipment, maintained to the highest standards daily. Every zone is designed to maximize your training potential.
             </p>
 
-            <div className="space-y-3">
+            <div className="space-y-2.5 sm:space-y-3">
               {FACILITIES.map((facility, i) => (
                 <div
                   key={facility.name}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-brand-black/50 border border-white/5 hover:border-brand-lime/25 transition-all group"
+                  className="flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl bg-brand-black/50 border border-white/5 hover:border-brand-lime/25 transition-all group"
                   style={{ transitionDelay: `${0.3 + i * 0.04}s` }}
                 >
-                  <span className="text-2xl">{facility.icon}</span>
-                  <div className="flex-1">
-                    <div className="text-white font-medium group-hover:text-brand-lime transition-colors">{facility.name}</div>
+                  <span className="text-xl sm:text-2xl">{facility.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-white text-sm sm:text-base font-medium group-hover:text-brand-lime transition-colors truncate">{facility.name}</div>
                   </div>
                   {facility.count > 1 && (
-                    <div className="glass-lime rounded-full w-8 h-8 flex items-center justify-center text-brand-lime text-xs font-bold border border-brand-lime/20">
+                    <div className="glass-lime rounded-full w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-brand-lime text-xs font-bold border border-brand-lime/20 shrink-0">
                       {facility.count}
                     </div>
                   )}
-                  <div className="w-0 group-hover:w-8 h-0.5 bg-brand-lime transition-all duration-300" />
+                  <div className="w-0 group-hover:w-8 h-0.5 bg-brand-lime transition-all duration-300 hidden sm:block" />
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 p-5 glass-lime rounded-xl border border-brand-lime/20">
-              <div className="text-brand-lime font-bold text-sm uppercase tracking-wider mb-1">25,000 sq ft</div>
-              <div className="text-white/60 text-sm">of world-class training space · 200+ equipment pieces · Daily professional maintenance</div>
+            <div className="mt-6 sm:mt-8 p-4 sm:p-5 glass-lime rounded-xl border border-brand-lime/20">
+              <div className="text-brand-lime font-bold text-xs sm:text-sm uppercase tracking-wider mb-1">25,000 sq ft</div>
+              <div className="text-white/60 text-xs sm:text-sm leading-relaxed">of world-class training space · 200+ equipment pieces · Daily professional maintenance</div>
             </div>
           </div>
         </div>

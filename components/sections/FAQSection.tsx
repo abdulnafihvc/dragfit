@@ -26,31 +26,31 @@ export default function FAQSection() {
   const filtered = category === 'All' ? FAQ_ITEMS : FAQ_ITEMS.filter((f) => f.category === category);
 
   return (
-    <section id="faq" className="py-24 lg:py-32 bg-brand-black relative overflow-hidden">
+    <section id="faq" className="py-16 sm:py-24 lg:py-32 bg-brand-black relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <div className={`flex items-center justify-center gap-3 mb-4 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}>
             <div className="w-8 h-0.5 bg-brand-lime" />
-            <span className="text-brand-lime text-sm font-semibold uppercase tracking-widest">FAQ</span>
+            <span className="text-brand-lime text-xs sm:text-sm font-semibold uppercase tracking-widest">FAQ</span>
             <div className="w-8 h-0.5 bg-brand-lime" />
           </div>
-          <h2 className={`font-display font-black text-5xl sm:text-6xl text-white leading-none mb-4 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
+          <h2 className={`font-display font-black text-4xl sm:text-6xl text-white leading-none mb-3 sm:mb-4 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
             GOT<br /><span className="text-brand-lime">QUESTIONS?</span>
           </h2>
-          <p className={`text-white/50 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.2s' }}>
+          <p className={`text-white/50 text-base sm:text-lg transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.2s' }}>
             Everything you need to know before joining.
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className={`flex flex-wrap justify-center gap-2 mb-10 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.25s' }}>
+        {/* Category Filter - Swipeable on mobile */}
+        <div className={`flex items-center overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center gap-2 pb-2 sm:pb-0 mb-8 sm:mb-10 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.25s' }}>
           {FAQ_CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setCategory(cat)}
               className={cn(
-                'px-4 py-1.5 rounded-full text-sm font-medium transition-all',
+                'px-3.5 py-1.5 sm:px-4 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap shrink-0 active:scale-95',
                 category === cat ? 'bg-brand-lime text-white' : 'glass border border-white/10 text-white/50 hover:text-white'
               )}
             >
@@ -60,7 +60,7 @@ export default function FAQSection() {
         </div>
 
         {/* Accordion */}
-        <div className="space-y-3">
+        <div className="space-y-2.5 sm:space-y-3">
           {filtered.map((faq, i) => (
             <div
               key={faq.id}
@@ -75,17 +75,17 @@ export default function FAQSection() {
             >
               <button
                 onClick={() => setOpen(open === faq.id ? null : faq.id)}
-                className="w-full flex items-center justify-between px-6 py-4 text-left group"
+                className="w-full flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 text-left group"
                 aria-expanded={open === faq.id}
               >
                 <span
-                  className="text-white font-medium group-hover:text-brand-lime transition-colors pr-4 leading-snug"
+                  className="text-white text-sm sm:text-base font-medium group-hover:text-brand-lime transition-colors pr-3 sm:pr-4 leading-snug"
                   itemProp="name"
                 >
                   {faq.question}
                 </span>
-                <div className={cn('w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all', open === faq.id ? 'bg-brand-lime' : 'bg-white/8 group-hover:bg-brand-lime/20')}>
-                  {open === faq.id ? <Minus size={14} className="text-white" /> : <Plus size={14} className="text-white/60 group-hover:text-brand-lime" />}
+                <div className={cn('w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center shrink-0 transition-all', open === faq.id ? 'bg-brand-lime' : 'bg-white/8 group-hover:bg-brand-lime/20')}>
+                  {open === faq.id ? <Minus size={13} className="text-white" /> : <Plus size={13} className="text-white/60 group-hover:text-brand-lime" />}
                 </div>
               </button>
 
@@ -94,9 +94,9 @@ export default function FAQSection() {
                 itemScope
                 itemType="https://schema.org/Answer"
               >
-                <div className="px-6 pb-5" itemProp="text">
-                  <div className="w-full h-px bg-white/8 mb-4" />
-                  <p className="text-white/60 leading-relaxed text-sm">{faq.answer}</p>
+                <div className="px-4 sm:px-6 pb-4 sm:pb-5" itemProp="text">
+                  <div className="w-full h-px bg-white/8 mb-3 sm:mb-4" />
+                  <p className="text-white/60 leading-relaxed text-xs sm:text-sm">{faq.answer}</p>
                 </div>
               </div>
             </div>
@@ -104,13 +104,13 @@ export default function FAQSection() {
         </div>
 
         {/* Still have questions CTA */}
-        <div className={`mt-12 text-center glass rounded-2xl p-8 border border-white/8 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.5s' }}>
-          <p className="text-white font-semibold text-lg mb-2">Still have questions?</p>
-          <p className="text-white/50 mb-5 text-sm">Our team typically responds within 2 hours</p>
-          <div className="flex flex-wrap gap-3 justify-center">
+        <div className={`mt-10 sm:mt-12 text-center glass rounded-2xl p-5 sm:p-8 border border-white/8 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.5s' }}>
+          <p className="text-white font-semibold text-base sm:text-lg mb-1.5 sm:mb-2">Still have questions?</p>
+          <p className="text-white/50 mb-5 text-xs sm:text-sm">Our team typically responds within 2 hours</p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-brand-lime hover:bg-brand-lime-light text-white font-semibold px-6 py-2.5 rounded-xl transition-all hover:shadow-lg hover:shadow-brand-lime/25"
+              className="w-full sm:w-auto bg-brand-lime hover:bg-brand-lime-light text-white font-semibold px-6 py-3 sm:py-2.5 rounded-xl transition-all hover:shadow-lg hover:shadow-brand-lime/25 active:scale-95 text-sm sm:text-base"
             >
               Contact Us
             </button>
@@ -118,9 +118,9 @@ export default function FAQSection() {
               href="https://wa.me/18005724348"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 glass border border-white/10 hover:border-green-500/40 text-white font-medium px-6 py-2.5 rounded-xl transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 glass border border-white/10 hover:border-green-500/40 text-white font-medium px-6 py-3 sm:py-2.5 rounded-xl transition-all active:scale-95 text-sm sm:text-base"
             >
-              <span className="text-lg">💬</span>
+              <span className="text-base sm:text-lg">💬</span>
               WhatsApp Chat
             </a>
           </div>

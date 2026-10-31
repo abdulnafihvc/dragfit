@@ -19,24 +19,24 @@ export default function TrainersSection() {
   const { ref, inView } = useInView();
 
   return (
-    <section id="trainers" className="py-24 lg:py-32 bg-brand-black relative overflow-hidden">
+    <section id="trainers" className="py-16 sm:py-24 lg:py-32 bg-brand-black relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-brand-lime/4 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <div className={`flex items-center justify-center gap-3 mb-4 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}>
             <div className="w-8 h-0.5 bg-brand-lime" />
-            <span className="text-brand-lime text-sm font-semibold uppercase tracking-widest">Our Coaches</span>
+            <span className="text-brand-lime text-xs sm:text-sm font-semibold uppercase tracking-widest">Our Coaches</span>
             <div className="w-8 h-0.5 bg-brand-lime" />
           </div>
-          <h2 className={`font-display font-black text-5xl sm:text-6xl text-white leading-none transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
+          <h2 className={`font-display font-black text-4xl sm:text-6xl text-white leading-none transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
             TRAINED BY THE<br /><span className="text-brand-lime">BEST</span>
           </h2>
         </div>
 
         {/* Trainers Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {TRAINERS.map((trainer, i) => (
             <div
               key={trainer.id}
@@ -52,27 +52,27 @@ export default function TrainersSection() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-transparent to-transparent" />
-                {/* Instagram overlay */}
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                {/* Instagram overlay - visible on mobile touch devices, hover on desktop */}
+                <div className="absolute top-3 right-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                   <a
                     href={`https://instagram.com/${trainer.instagram.replace('@', '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-brand-lime/20 transition-colors"
+                    className="w-8 h-8 sm:w-9 sm:h-9 glass rounded-full flex items-center justify-center hover:bg-brand-lime/20 active:scale-90 transition-all shadow-md"
                     aria-label={`${trainer.name} Instagram`}
                   >
-                    <Instagram size={16} className="text-white" />
+                    <Instagram size={15} className="text-white" />
                   </a>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-5">
-                <h3 className="font-display font-black text-xl text-white uppercase tracking-wide">{trainer.name}</h3>
-                <p className="text-brand-lime text-sm font-semibold mb-3">{trainer.role}</p>
+              <div className="p-4 sm:p-5">
+                <h3 className="font-display font-black text-lg sm:text-xl text-white uppercase tracking-wide">{trainer.name}</h3>
+                <p className="text-brand-lime text-xs sm:text-sm font-semibold mb-2.5 sm:mb-3">{trainer.role}</p>
 
                 {/* Stats */}
-                <div className="grid grid-cols-2 gap-2 mb-4">
+                <div className="grid grid-cols-2 gap-2 mb-3 sm:mb-4">
                   <div className="flex items-center gap-1.5 text-xs text-white/40">
                     <Clock size={11} className="text-brand-lime" />
                     {trainer.experience}yr exp
@@ -84,12 +84,12 @@ export default function TrainersSection() {
                 </div>
 
                 {/* Bio */}
-                <p className="text-white/50 text-xs leading-relaxed line-clamp-2 mb-4">{trainer.bio}</p>
+                <p className="text-white/50 text-xs leading-relaxed line-clamp-2 mb-3 sm:mb-4">{trainer.bio}</p>
 
                 {/* Certs */}
                 <div className="flex flex-wrap gap-1.5">
                   {trainer.certifications.slice(0, 2).map((cert) => (
-                    <span key={cert} className="flex items-center gap-1 badge-lime text-xs px-2 py-0.5 rounded-full">
+                    <span key={cert} className="flex items-center gap-1 badge-lime text-[11px] sm:text-xs px-2 py-0.5 rounded-full">
                       <Award size={9} />
                       {cert}
                     </span>

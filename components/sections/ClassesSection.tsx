@@ -35,28 +35,28 @@ export default function ClassesSection() {
     : GYM_CLASSES.filter((c) => c.category === activeCategory);
 
   return (
-    <section id="classes" className="py-24 lg:py-32 bg-brand-charcoal relative overflow-hidden">
+    <section id="classes" className="py-16 sm:py-24 lg:py-32 bg-brand-charcoal relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-12 gap-6">
           <div>
             <div className={`flex items-center gap-3 mb-4 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`}>
               <div className="w-8 h-0.5 bg-brand-lime" />
-              <span className="text-brand-lime text-sm font-semibold uppercase tracking-widest">Classes</span>
+              <span className="text-brand-lime text-xs sm:text-sm font-semibold uppercase tracking-widest">Classes</span>
             </div>
-            <h2 className={`font-display font-black text-5xl sm:text-6xl text-white leading-none transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
+            <h2 className={`font-display font-black text-4xl sm:text-6xl text-white leading-none transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`} style={{ transitionDelay: '0.1s' }}>
               FIND YOUR<br /><span className="text-brand-lime">DISCIPLINE</span>
             </h2>
           </div>
 
-          {/* Category Filter */}
-          <div className={`flex flex-wrap gap-2 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.2s' }}>
+          {/* Category Filter - Swipeable on mobile */}
+          <div className={`flex items-center overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap gap-2 pb-2 sm:pb-0 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.2s' }}>
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={cn(
-                  'px-4 py-2 rounded-full text-sm font-semibold transition-all',
+                  'px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap shrink-0 active:scale-95',
                   activeCategory === cat
                     ? 'bg-brand-lime text-white shadow-lg shadow-brand-lime/25'
                     : 'glass border border-white/10 text-white/60 hover:text-white hover:border-white/20'
@@ -69,7 +69,7 @@ export default function ClassesSection() {
         </div>
 
         {/* Classes Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {filtered.map((cls, i) => (
             <div
               key={cls.id}
@@ -86,7 +86,7 @@ export default function ClassesSection() {
                 style={{ background: `linear-gradient(90deg, ${cls.color}, ${cls.color}88)` }}
               />
 
-              <div className="p-6">
+              <div className="p-5 sm:p-6">
                 {/* Icon + Title row */}
                 <div className="flex items-start justify-between mb-4">
                   <div>
@@ -102,7 +102,7 @@ export default function ClassesSection() {
                 </div>
 
                 {/* Meta */}
-                <div className="flex items-center gap-4 mb-4 text-sm text-white/40">
+                <div className="flex items-center gap-4 mb-4 text-xs sm:text-sm text-white/40">
                   <span className="flex items-center gap-1.5">
                     <Clock size={13} className="text-brand-lime" />
                     {cls.duration} min
@@ -113,13 +113,13 @@ export default function ClassesSection() {
                   </span>
                 </div>
 
-                <p className="text-white/50 text-sm leading-relaxed mb-4 line-clamp-2">{cls.description}</p>
+                <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-2">{cls.description}</p>
 
                 {/* Schedule – Expandable */}
                 <div className={cn('overflow-hidden transition-all duration-300', expanded === cls.id ? 'max-h-40' : 'max-h-0')}>
                   <div className="border-t border-white/8 pt-4 mb-3">
                     <p className="text-xs text-white/40 uppercase tracking-wider mb-2 font-semibold">Schedule</p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {cls.schedule.map((s, j) => (
                         <span key={j} className="text-xs glass px-2.5 py-1 rounded-full text-white/70 border border-white/8">
                           {s.day} · {s.time}
@@ -140,10 +140,10 @@ export default function ClassesSection() {
         </div>
 
         {/* Bottom CTA */}
-        <div className={`text-center mt-12 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.5s' }}>
+        <div className={`text-center mt-10 sm:mt-12 transition-all duration-700 ${inView ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '0.5s' }}>
           <button
             onClick={() => document.querySelector('#membership')?.scrollIntoView({ behavior: 'smooth' })}
-            className="inline-flex items-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-white font-semibold px-8 py-4 rounded-xl transition-all hover:shadow-xl hover:shadow-brand-lime/25"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-white font-semibold px-8 py-3.5 sm:py-4 rounded-xl transition-all hover:shadow-xl hover:shadow-brand-lime/25 active:scale-95 text-base"
           >
             Join to Access All Classes
             <ChevronRight size={18} />

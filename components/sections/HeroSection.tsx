@@ -23,17 +23,14 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-24 pb-16 sm:pt-28 sm:pb-24"
       aria-label="Hero section"
     >
-      {/* Background Image with Parallax Effect */}
+      {/* Background Image with Parallax Effect (smooth scroll on mobile) */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 bg-cover bg-center md:bg-fixed"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=85&fit=crop')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
         }}
       >
         {/* Layered Gradient Overlay */}
@@ -56,7 +53,7 @@ export default function HeroSection() {
         <div className="max-w-4xl">
           {/* Badge */}
           <div
-            className={`inline-flex items-center gap-2 badge-lime rounded-full px-4 py-1.5 mb-6 text-sm font-semibold uppercase tracking-widest transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`inline-flex items-center gap-2 badge-lime rounded-full px-3.5 py-1.5 sm:px-4 mb-5 sm:mb-6 text-xs sm:text-sm font-semibold uppercase tracking-widest transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '0.1s' }}
           >
             <span className="w-2 h-2 rounded-full bg-brand-lime animate-pulse" />
@@ -65,20 +62,20 @@ export default function HeroSection() {
 
           {/* Main Headline */}
           <h1
-            className={`font-display font-black text-white leading-none mb-6 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+            className={`font-display font-black text-white leading-[0.92] mb-5 sm:mb-6 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
             style={{ transitionDelay: '0.2s' }}
           >
-            <span className="block text-6xl sm:text-7xl lg:text-8xl xl:text-9xl tracking-tight">
+            <span className="block text-5xl xs:text-6xl sm:text-7xl lg:text-8xl xl:text-9xl tracking-tight">
               FORGE YOUR
             </span>
-            <span className="block text-6xl sm:text-7xl lg:text-8xl xl:text-9xl tracking-tight text-brand-lime lime-text-glow">
+            <span className="block text-5xl xs:text-6xl sm:text-7xl lg:text-8xl xl:text-9xl tracking-tight text-brand-lime lime-text-glow">
               LEGACY.
             </span>
           </h1>
 
           {/* Subheadline */}
           <p
-            className={`text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed mb-10 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`text-base sm:text-xl text-white/70 max-w-2xl leading-relaxed mb-8 sm:mb-10 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '0.35s' }}
           >
             Where champions are built. World-class equipment, elite trainers, and a community that refuses to quit. Your transformation starts here.
@@ -86,19 +83,19 @@ export default function HeroSection() {
 
           {/* CTA Buttons */}
           <div
-            className={`flex flex-wrap gap-4 mb-16 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10 sm:mb-16 w-full sm:w-auto transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '0.5s' }}
           >
             <button
               onClick={scrollToMembership}
-              className="group flex items-center gap-3 bg-brand-lime hover:bg-brand-lime-light text-white font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-brand-lime/30 hover:scale-105 animate-pulse-lime"
+              className="group flex items-center justify-center gap-3 bg-brand-lime hover:bg-brand-lime-light text-white font-bold text-base sm:text-lg px-7 py-3.5 sm:py-4 rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-brand-lime/30 active:scale-95 animate-pulse-lime"
             >
               Start Your Journey
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={scrollToMembership}
-              className="group flex items-center gap-3 glass border border-white/20 hover:border-brand-lime/50 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:bg-white/5"
+              className="group flex items-center justify-center gap-3 glass border border-white/20 hover:border-brand-lime/50 text-white font-semibold text-base sm:text-lg px-7 py-3.5 sm:py-4 rounded-xl transition-all duration-300 hover:bg-white/5 active:scale-95"
             >
               <Play size={18} className="text-brand-lime" />
               Free 7-Day Trial
@@ -107,7 +104,7 @@ export default function HeroSection() {
 
           {/* Stats Row */}
           <div
-            className={`flex flex-wrap gap-8 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            className={`grid grid-cols-3 gap-2 sm:gap-8 pt-4 border-t border-white/10 sm:border-t-0 sm:flex sm:flex-wrap transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             style={{ transitionDelay: '0.65s' }}
           >
             {[
@@ -116,18 +113,18 @@ export default function HeroSection() {
               { num: '5,200+', label: 'Transformations' },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col">
-                <span className="font-display text-3xl sm:text-4xl font-black text-white">{stat.num}</span>
-                <span className="text-sm text-white/50 uppercase tracking-wider font-medium mt-1">{stat.label}</span>
+                <span className="font-display text-2xl xs:text-3xl sm:text-4xl font-black text-white">{stat.num}</span>
+                <span className="text-[11px] sm:text-sm text-white/50 uppercase tracking-wider font-medium mt-0.5 sm:mt-1">{stat.label}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - desktop/tablet only to avoid mobile overlap */}
       <button
         onClick={scrollToAbout}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/40 hover:text-white/70 transition-colors group"
+        className="hidden md:flex absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 text-white/40 hover:text-white/70 transition-colors group"
         aria-label="Scroll to about section"
       >
         <span className="text-xs uppercase tracking-widest font-medium">Discover</span>

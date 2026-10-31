@@ -19,6 +19,18 @@ export default function Navbar() {
   const [darkMode, setDarkMode] = useState(true);
   const [activeSection, setActiveSection] = useState('');
 
+  // Prevent background scroll when mobile drawer is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 60);
   }, []);
@@ -71,7 +83,7 @@ export default function Navbar() {
               className="flex items-center gap-2 group"
               aria-label="DragFit Home"
             >
-              <img src="/logo.svg" alt="DragFit Logo" className="h-10 w-auto group-hover:scale-105 transition-transform" />
+              <img src="/logo.svg" alt="DragFit Logo" className="h-8 sm:h-10 w-auto group-hover:scale-105 transition-transform" />
             </button>
 
             {/* Desktop Nav */}
@@ -93,14 +105,14 @@ export default function Navbar() {
             </div>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5 sm:gap-3">
               {/* Dark/Light Toggle */}
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="w-9 h-9 rounded-full glass flex items-center justify-center text-brand-gray-light hover:text-white transition-colors"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full glass flex items-center justify-center text-brand-gray-light hover:text-white transition-colors"
                 aria-label="Toggle theme"
               >
-                {darkMode ? <Moon size={16} /> : <Sun size={16} />}
+                {darkMode ? <Moon size={15} /> : <Sun size={15} />}
               </button>
 
               {/* CTA */}
@@ -114,11 +126,11 @@ export default function Navbar() {
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="lg:hidden w-10 h-10 flex items-center justify-center text-white"
+                className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-white rounded-lg glass border border-white/10"
                 aria-label="Toggle mobile menu"
                 aria-expanded={menuOpen}
               >
-                {menuOpen ? <X size={22} /> : <Menu size={22} />}
+                {menuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>
@@ -128,14 +140,14 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={cn(
-          'fixed inset-0 z-40 lg:hidden transition-all duration-300',
+          'fixed inset-0 z-50 lg:hidden transition-all duration-300',
           menuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         )}
       >
         {/* Backdrop */}
         <div
           className={cn(
-            'absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity',
+            'absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300',
             menuOpen ? 'opacity-100' : 'opacity-0'
           )}
           onClick={() => setMenuOpen(false)}
@@ -143,35 +155,63 @@ export default function Navbar() {
         {/* Panel */}
         <div
           className={cn(
-            'absolute right-0 top-0 h-full w-72 bg-brand-charcoal border-l border-white/10 transform transition-transform duration-300',
+            'absolute right-0 top-0 h-full w-[82vw] max-w-xs bg-brand-charcoal border-l border-white/10 shadow-2xl transform transition-transform duration-300 flex flex-col',
             menuOpen ? 'translate-x-0' : 'translate-x-full'
           )}
         >
-          <div className="flex flex-col h-full pt-20 pb-8 px-6">
-            <nav className="flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollTo(link.href)}
-                  className="text-left py-3 px-4 text-white font-medium rounded-lg hover:bg-white/5 hover:text-brand-lime transition-all uppercase tracking-wider text-sm"
-                >
-                  {link.label}
-                </button>
-              ))}
+          {/* Drawer Header */}
+          <div className="flex items-center justify-between px-6 py-5 border-b border-white/8">
+            <img src="/logo.svg" alt="DragFit Logo" className="h-7 w-auto" />
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="w-8 h-8 rounded-full glass flex items-center justify-center text-white/70 hover:text-white"
+              aria-label="Close menu"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          <div className="flex flex-col flex-1 overflow-y-auto px-5 py-6">
+            <nav className="flex flex-col gap-1.5">
+              {NAV_LINKS.map((link) => {
+                const isActive = activeSection === link.href;
+                return (
+                  <button
+                    key={link.href}
+                    onClick={() => scrollTo(link.href)}
+                    className={cn(
+                      'text-left py-3 px-4 rounded-xl font-medium transition-all uppercase tracking-wider text-sm flex items-center justify-between',
+                      isActive
+                        ? 'bg-brand-lime/15 text-brand-lime font-semibold'
+                        : 'text-white/80 hover:bg-white/5 hover:text-white'
+                    )}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-brand-lime" />}
+                  </button>
+                );
+              })}
             </nav>
-            <div className="mt-auto space-y-3">
+
+            <div className="mt-auto pt-6 space-y-3">
               <button
                 onClick={() => scrollTo('#membership')}
-                className="w-full bg-brand-lime hover:bg-brand-lime-light text-white font-semibold py-3 rounded-lg transition-all"
+                className="w-full bg-brand-lime hover:bg-brand-lime-light text-white font-semibold py-3 rounded-xl transition-all shadow-lg shadow-brand-lime/20"
               >
                 Join Now
               </button>
               <button
                 onClick={() => scrollTo('#membership')}
-                className="w-full glass border border-white/10 text-white font-medium py-3 rounded-lg hover:border-brand-lime/40 transition-all"
+                className="w-full glass border border-white/10 text-white font-medium py-3 rounded-xl hover:border-brand-lime/40 transition-all text-sm"
               >
                 Free 7-Day Trial
               </button>
+              <a
+                href="tel:+18003724348"
+                className="flex items-center justify-center gap-2 text-white/40 hover:text-white text-xs pt-1 transition-colors"
+              >
+                📞 Call: +1 (800) DRAG-FIT
+              </a>
             </div>
           </div>
         </div>
