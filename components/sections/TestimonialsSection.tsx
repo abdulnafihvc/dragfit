@@ -57,7 +57,7 @@ export default function TestimonialsSection() {
             <Quote size={48} className="text-brand-lime/20 absolute top-6 left-6" />
             <div className="relative z-10">
               <p className="text-white/80 text-lg lg:text-xl leading-relaxed italic mb-6">
-                "{TESTIMONIALS[active].text}"
+                &ldquo;{TESTIMONIALS[active].text}&rdquo;
               </p>
               <div className="flex items-center gap-4">
                 <img

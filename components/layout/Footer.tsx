@@ -40,7 +40,7 @@ export default function Footer() {
             {subscribed ? (
               <div className="flex items-center gap-2 text-green-400 font-semibold">
                 <CheckCircle size={20} />
-                You're subscribed!
+                You&apos;re subscribed!
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex gap-2 w-full md:w-auto">

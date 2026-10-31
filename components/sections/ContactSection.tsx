@@ -139,7 +139,7 @@ export default function ContactSection() {
                   <CheckCircle size={32} className="text-green-400" />
                 </div>
                 <h3 className="font-display text-2xl font-black text-white uppercase mb-2">Message Sent!</h3>
-                <p className="text-white/50 max-w-xs">We'll get back to you within 2 hours. Check your inbox for a confirmation.</p>
+                <p className="text-white/50 max-w-xs">We&apos;ll get back to you within 2 hours. Check your inbox for a confirmation.</p>
                 <button
                   onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', interest: '', message: '' }); }}
                   className="mt-6 text-brand-lime text-sm font-semibold hover:text-brand-lime-light transition-colors"
@@ -170,7 +170,7 @@ export default function ContactSection() {
                     <input type="tel" value={form.phone} onChange={updateField('phone')} placeholder="+1 (555) 000-0000" className={inputClass()} />
                   </div>
                   <div>
-                    <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">I'm Interested In</label>
+                    <label className="block text-white/50 text-xs uppercase tracking-wider mb-2">I&apos;m Interested In</label>
                     <select value={form.interest} onChange={updateField('interest')} className={inputClass()}>
                       <option value="">Select an option</option>
                       <option value="membership">Gym Membership</option>
@@ -202,7 +202,7 @@ export default function ContactSection() {
                   {loading ? (
                     <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Sending...</>
                   ) : (
-                    <><Send size={17} />Send Message — It's Free</>
+                    <><Send size={17} />Send Message — It&apos;s Free</>
                   )}
                 </button>
 
