@@ -98,7 +98,7 @@ const schemaMarkup = {
       closes: '22:00',
     },
   ],
-  priceRange: '$$',
+  priceRange: '₹₹',
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.9',

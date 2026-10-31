@@ -5,8 +5,8 @@ export const MEMBERSHIP_PLANS: MembershipPlan[] = [
     id: 'basic',
     name: 'Basic',
     tagline: 'Start your journey',
-    monthlyPrice: 49,
-    yearlyPrice: 39,
+    monthlyPrice: 1499,
+    yearlyPrice: 1199,
     featured: false,
     color: '#6B6B6B',
     features: [
@@ -22,8 +22,8 @@ export const MEMBERSHIP_PLANS: MembershipPlan[] = [
     id: 'standard',
     name: 'Standard',
     tagline: 'Most popular choice',
-    monthlyPrice: 89,
-    yearlyPrice: 69,
+    monthlyPrice: 2499,
+    yearlyPrice: 1999,
     featured: false,
     color: '#A0A0A0',
     features: [
@@ -41,8 +41,8 @@ export const MEMBERSHIP_PLANS: MembershipPlan[] = [
     id: 'premium',
     name: 'Premium',
     tagline: 'The elite experience',
-    monthlyPrice: 149,
-    yearlyPrice: 119,
+    monthlyPrice: 3999,
+    yearlyPrice: 3199,
     featured: true,
     color: '#E5001A',
     features: [
@@ -286,7 +286,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     id: 'f6',
     question: 'Are personal training sessions included?',
-    answer: 'Personal training sessions are included in our Premium plan (4 sessions/month). Standard and Basic members can purchase PT sessions individually or in packages at preferential member rates starting at $65/session.',
+    answer: 'Personal training sessions are included in our Premium plan (4 sessions/month). Standard and Basic members can purchase PT sessions individually or in packages at preferential member rates starting at ₹1,500/session.',
     category: 'Training',
   },
   {

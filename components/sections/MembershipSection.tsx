@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Check, Star, Zap } from 'lucide-react';
+import { Check, Star, Zap, IndianRupee } from 'lucide-react';
 import { MEMBERSHIP_PLANS } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
@@ -95,14 +95,18 @@ export default function MembershipSection() {
               {/* Price */}
               <div className="mb-5 sm:mb-6">
                 <div className="flex items-end gap-1">
-                  <span className="font-display text-4xl sm:text-5xl font-black text-white">
-                    ${yearly ? plan.yearlyPrice : plan.monthlyPrice}
-                  </span>
+                  <div className="flex items-center text-white">
+                    <IndianRupee className="w-6 h-6 sm:w-8 sm:h-8 text-brand-lime shrink-0 mr-0.5" strokeWidth={2.5} />
+                    <span className="font-display text-4xl sm:text-5xl font-black">
+                      {(yearly ? plan.yearlyPrice : plan.monthlyPrice).toLocaleString('en-IN')}
+                    </span>
+                  </div>
                   <span className="text-white/40 mb-1.5 text-xs sm:text-sm">/mo</span>
                 </div>
                 {yearly && (
-                  <div className="text-green-400 text-xs sm:text-sm font-medium mt-1">
-                    Save ${(plan.monthlyPrice - plan.yearlyPrice) * 12}/year
+                  <div className="text-green-400 text-xs sm:text-sm font-medium mt-1 flex items-center gap-0.5">
+                    Save <IndianRupee size={12} strokeWidth={2.5} className="inline shrink-0" />
+                    {((plan.monthlyPrice - plan.yearlyPrice) * 12).toLocaleString('en-IN')}/year
                   </div>
                 )}
               </div>
